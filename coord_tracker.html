@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinate Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        .coordinates {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Coordinate Monitoring</h1>
+        <div class="coordinates" id="coordinates">
+            Move your mouse or touch the screen to see the coordinates.
+        </div>
+    </div>
+
+    <script>
+        const coordinatesDiv = document.getElementById('coordinates');
+
+        function updateCoordinates(x, y) {
+            coordinatesDiv.textContent = `X: ${x}, Y: ${y}`;
+        }
+
+        // Mouse movement event
+        document.addEventListener('mousemove', (event) => {
+            updateCoordinates(event.clientX, event.clientY);
+        });
+
+        // Touch movement event
+        document.addEventListener('touchmove', (event) => {
+            const touch = event.touches[0];
+            updateCoordinates(touch.clientX, touch.clientY);
+        });
+
+        // Initial touch event to catch touch start
+        document.addEventListener('touchstart', (event) => {
+            const touch = event.touches[0];
+            updateCoordinates(touch.clientX, touch.clientY);
+        });
+    </script>
+</body>
+</html>
